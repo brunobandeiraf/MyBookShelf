@@ -9,39 +9,39 @@ import {
   Alert
 } from 'react-native';
 import styles from '../Styles/StylesCadastro';
-
+import api from "../api";
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
 export default function Cadastro({navigation}) {
-  const [nome, setNome] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
-  const handleCadastro = () => {
-    if(!nome || !email || !senha){
-      Alert.alert('Erro', 'Preencha todos os campos.');
-      return;
-    }
+  const handleCadastro = async() => {
 
-    if(nome.length < 3){
-      Alert.alert('Erro', 'O nome de usuário deve ter pelo menos 3 caracteres.');
-      return;
-    }
+    try {
+      const data = await api.post('/user/register',{
+          name: name,
+          email: email,
+          password: password,
+      });
+      if (data.status === 200) {
+          console.log(data)
+          Alert.alert('Sucesso', 'Cadastro realizado com sucesso!')
+          navigation.navigate('Login')
+      } else {
+          console.log(data)
+      }
 
-    if(!/^\S+@\S+\.\S+$/.test(email)){
-      Alert.alert('Erro', 'O email não é válido.');
-      return;
-    }
-
-    if(senha.length < 6){
-      Alert.alert('Erro', 'A senha deve ter pelo menos 6 caracteres.');
-      return;
-    }
-
-    Alert.alert('Sucesso', 'Cadastro realizado com sucesso!');
+  } catch (error) {
+      console.log(error);
+  }
+    
+   
+    
   }
   
 
@@ -61,8 +61,8 @@ export default function Cadastro({navigation}) {
       <TextInput
         style={styles.input}
         placeholder="Nome de usuário"
-        value={nome}
-        onChangeText={setNome}
+        value={name}
+        onChangeText={setName}
       />
       <Text style={styles.label3}>Email</Text>
       <TextInput
@@ -76,8 +76,8 @@ export default function Cadastro({navigation}) {
         style={[styles.input, { paddingRight: 40 }]}
         placeholder="Senha"
         secureTextEntry={!mostrarSenha}
-        value={senha}
-        onChangeText={setSenha}
+        value={password}
+        onChangeText={setPassword}
         maxLength={20}
       />
 

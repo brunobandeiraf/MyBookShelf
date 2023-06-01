@@ -48,8 +48,8 @@ export default function Perfil({navigation}) {
             <Text style={styles.anunciosText}>Anuncios</Text>
             </TouchableOpacity>
               
-            <TouchableOpacity style={styles.editarPerfilBotao} onPress={() => navigation.navigate('EditarPerfil')}>
-            <Text style={styles.editarPerfilText}>Editar</Text>
+            <TouchableOpacity style={styles.editarPerfilBotao} >
+            <Text style={styles.editarPerfilText}>Anunciar</Text>
             </TouchableOpacity>
 
           </View>

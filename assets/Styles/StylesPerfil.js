@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     editarPerfilBotao:  {
       position: 'relative',
       top: 250,
-
+      paddingHorizontal: 1,
       width: 120,
       height: 35,
       backgroundColor: '#94ddaa',

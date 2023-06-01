@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Alert
-} from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity, KeyboardAvoidingView, Alert} from 'react-native';
 
 import styles from '../Styles/StylesConfiguração';
 
-export default function Configuracoes() {
-  const [theme, setTheme] = useState('light');
-  const [showAccountInfo, setShowAccountInfo] = useState(false);
+import { AntDesign } from '@expo/vector-icons';
 
-  const handleThemeChange = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  }
+export default function Perfil({navigation}) {
 
   const handleDeleteAccount = () => {
     Alert.alert('Conta Excluída', 'Sua conta foi excluída com sucesso.');
   }
 
-  const handleEditAccount = () => {
-    setShowAccountInfo(true);
-    Alert.alert('Conta deslogada');
-  }
-
   return (
-    <View style={theme === 'light' ? styles.lightContainer : styles.darkContainer}>
-      <TouchableOpacity style={styles.themeButton} onPress={handleThemeChange}>
-        <Text style={styles.themeButtonText}>Mudar Tema para {theme === 'light' ? 'Dark' : 'Light'}</Text>
-      </TouchableOpacity>
+    <View >
+      
+      <View style={styles.topoContainer}>
+      
+            <Image source={require('../Imagens/imagem300.jpg')} style={styles.perfilImagem}/>
+            <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={styles.icon}>
+            <Text>
+            <AntDesign name="arrowleft" size={28} color="#91d996" />
+            </Text>
+            </TouchableOpacity>
+              
+           
 
-      <TouchableOpacity style={styles.logoutButton}>
-        <Text style={styles.logoutButtonText}>Sair da conta</Text>
-      </TouchableOpacity>
+      </View>
+        <KeyboardAvoidingView style={styles.baixoContainer}>
+            <Text style={styles.nomePerfilText}>Felipe</Text>
 
-      <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteAccount}>
-        <Text style={styles.deleteButtonText}>Excluir Conta</Text>
-      </TouchableOpacity>
+            <Text style={styles.configuracaoText}>Configuração:</Text>
+
+        <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteAccount}>
+           <Text style={styles.deleteButtonText}>Excluir Conta</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('EditarPerfil')}>
+           <Text style={styles.editButtonText}>Editar Conta</Text>
+        </TouchableOpacity>
+
+        </KeyboardAvoidingView>
     </View>
   );
 }

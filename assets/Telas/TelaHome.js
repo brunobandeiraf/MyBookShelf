@@ -31,7 +31,7 @@ export default function Home({ navigation }) {
           color="#91d996"
         /></Text> 
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Introducao')} style={styles.iconCarrinho}>
+      <TouchableOpacity onPress={() => navigation.navigate('Carrinho')} style={styles.iconCarrinho}>
         <Text><FontAwesome
           name="shopping-cart"
           size={24}

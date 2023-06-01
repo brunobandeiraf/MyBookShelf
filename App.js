@@ -10,6 +10,9 @@ import Favoritos from "./assets/Telas/TelaFavoritos.js"
 import Livro from "./assets/Telas/TelaLivro.js"
 import Configuracoes from './assets/Telas/TelaConfiguração';
 import EditarPerfil from './assets/Telas/TelaEditarPerfil';
+import Carrinho from './assets/Telas/TelaCarrinho';
+import Pagamento from './assets/Telas/TelaPagamento';
+import Anunciar from './assets/Telas/TelaAnunciar';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -18,17 +21,17 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+     <Stack.Navigator screenOptions={{headerShown: false}}>
 
       <Stack.Screen name="Introducao" component={Introducao} />
 
-        <Stack.Screen name="Cadastro" component={Cadastro} />
+      <Stack.Screen name="Cadastro" component={Cadastro} />
         
-        <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Login" component={Login} />
 
-        <Stack.Screen name="Recuperacao" component={Recuperacao} />
+      <Stack.Screen name="Recuperacao" component={Recuperacao} />
 
-        <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={Home} />
         
       <Stack.Screen name="Perfil" component={Perfil} />
 
@@ -39,8 +42,14 @@ export default function App() {
       <Stack.Screen name="Favoritos" component={Favoritos} />
 
       <Stack.Screen name="Livro" component={Livro} />
+
+    
+
+      <Stack.Screen name="Pagamento" component={Pagamento} />
+
+      <Stack.Screen name="Carrinho" component={Carrinho} />
         
-      </Stack.Navigator>
+     </Stack.Navigator>
     </NavigationContainer>
     
   );

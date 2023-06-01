@@ -11,8 +11,11 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from '../Styles/StylesLogin';
 
 export default function Login({navigation}) {
-  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+
+  
 
   return (
     <View style={styles.container}>
@@ -24,12 +27,12 @@ export default function Login({navigation}) {
        <Image source={require('../Imagens/5186397.jpg')} style={styles.image}/>
       <Text style={styles.text3}>Login</Text>
 
-      <Text style={styles.label1}>Nome de usuário</Text>
+      <Text style={styles.label1}>Email</Text>
       <TextInput
         style={styles.input}
-        placeholder="Nome de usuário"
-        value={nome}
-        onChangeText={setNome}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
       />
       <Text style={styles.label2}>Senha do usuário</Text>
       <TextInput
