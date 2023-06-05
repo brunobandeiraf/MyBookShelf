@@ -9,11 +9,33 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import styles from '../Styles/StylesLogin';
+import api from "../api";
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { Context } from './context/dataContext';
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState('');
 
+  const onLoginPressed = async () => {
+    try {
+        const authData = await api.post('/login', {
+            email: email,
+            password: password
+        })
+        if(authData.status === 200){
+            // await AsyncStorage.setItem('token', authData.data.token)
+            // dispatch({type:'logIn', payload: true})
+            navigation.navigate('Home')
+        } else {
+            alert('Email ou Senha Inválidos')
+            setPassword('')
+        }
+    } catch (error) {
+        alert('Email ou Senha Inválidos')
+        setPassword('')
+    }
+}
 
   
 
@@ -39,11 +61,11 @@ export default function Login({navigation}) {
         style={styles.input}
         placeholder="Senha"
         secureTextEntry={true}
-        value={senha}
-        onChangeText={setSenha}
+        value={password}
+        onChangeText={setPassword}
       />
       <TouchableOpacity style={styles.text}
-      onPress={() => navigation.navigate('Home')}
+      onPress={onLoginPressed}
       >
         <Text>Logar</Text>
       </TouchableOpacity>
